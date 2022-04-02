@@ -1,13 +1,12 @@
 * {
-  margin: 0;
-  padding: 0;
-}
-
-body {
   box-sizing: border-box;
+}
+/* make the background black after once the navigation has show */
+body {
+  overflow-x: hidden;
   background-color: #333;
   color: #222;
-  overflow-x: hidden;
+  margin: 0;
 }
 
 /** --------   UTILITY CLASS -------- */
@@ -17,54 +16,105 @@ body {
 
 /** --------  CONTAINER -------- */
 .container {
-  background-color: #fff;
+  background-color: #fafafa;
   transform-origin: top left;
-  transition: transform 0.5 linear;
+  transition: transform 0.5s linear;
   width: 100vw;
-  height: 100vh;
-  padding: 50px;
+  min-height: 100vh;
+  padding: 50px 150px;
 }
 
+/* Whenver show-nav class will add main container will rotate negetive -20% */
 .container.show-nav {
-  transform: rotate(-12deg);
+  transform: rotate(-20deg);
 }
 
 /** --------   CIRCLE CONTAINER -------- */
 .circle-container {
-  width: 150px;
-  height: 150px;
-  background-color: rgb(51, 175, 224);
-  border-radius: 50%;
   position: fixed;
+  top: -100px;
+  left: -100px;
 }
 
 .circle {
+  width: 200px;
+  height: 200px;
+  background-color: rgb(51, 175, 224);
+  border-radius: 50%;
   position: relative;
 }
-#close {
+
+.circle button {
   position: absolute;
-  top: 100px;
-  left: 18px;
+  background-color: transparent;
+  outline: 0;
+  border: none;
+  color: #fafafa;
+  top: 50%;
+  left: 50%;
+  height: 100px;
+  font-size: 26px;
+  /* transition: transform 0.5s linear; */
+  transition: transform 0.5s ease;
+}
+.circle button#open {
+  left: 60%;
 }
 
-#open {
-  position: absolute;
-  top: 73px;
-  left: 80px;
+.circle button#close {
+  top: 60%;
+  transform: rotate(90deg);
+  transform-origin: top left;
 }
 
-/** -------   CONTENT-FRONT ---------- */
-.content-front {
+/** -------   CONTENT ---------- */
+.content {
+  max-width: 1000px;
+  margin: 50px auto;
+}
+.content img {
+  max-width: 100%;
 }
 
-.flower-image {
-  width: 800px;
-  height: 500px;
+nav {
+  position: fixed;
+  bottom: 40px;
+  left: 0;
 }
 
-ul {
+nav ul {
   list-style: none;
+  padding-left: 30px;
 }
 
-li {
+nav ul li {
+  color: #fafafa;
+  margin: 40px 0;
+  text-transform: uppercase;
+  transform: translateX(-100%);
+  transition: transform 0.4s ease-in;
+}
+
+nav ul li i {
+  font-size: 17px;
+  margin-right: 10px;
+}
+
+.container.show-nav + nav ul li {
+  transform: translateX(0);
+}
+
+.container.show-nav + nav li {
+  transform: translateX(0);
+  /* transition-delay: 0.3s; */
+  transition: transform 0.5s ease-in;
+}
+
+.container.show-nav .circle {
+  transform: rotate(-70deg);
+  transition: transform 0.5s ease;
+}
+
+.container .circle {
+  transition: transform 0.5s ease;
 }
